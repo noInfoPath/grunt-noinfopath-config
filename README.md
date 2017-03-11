@@ -67,7 +67,7 @@ grunt.initConfig({
 grunt.initConfig({
 	noinfopath_config: {
 		dev: {
-			src: ["test/fixtures/*.json.tmpl"],
+			src: ["no-schema/*.json.tmpl"],
 			options: {
 				values: {
 					"NIP_MONGO_HOST": "mongodb://localhost:27017",
