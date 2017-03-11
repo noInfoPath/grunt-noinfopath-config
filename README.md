@@ -62,7 +62,6 @@ grunt.initConfig({
 
 ### Usage Examples
 
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
 
 ```javascript
 grunt.initConfig({
