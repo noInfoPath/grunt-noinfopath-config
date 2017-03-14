@@ -15,7 +15,7 @@ function _environment() {
 	return envi;
 }
 
-function configure(grunt, task, file) {
+function configure_v1(grunt, task, file) {
 
 
 	var configPath = file.substring(0, file.lastIndexOf(".tmpl")),
@@ -47,6 +47,41 @@ function configure(grunt, task, file) {
 	}
 }
 
+function configure_v2(grunt, task, file) {
+
+	file.src.forEach(function(srcFile){
+
+		var slash  = srcFile.lastIndexOf(process.platform.indexOf("win32") > -1 ? "\\" : "/")  + 1,
+			destFile = file.dest + srcFile.substring(0, srcFile.lastIndexOf(".tmpl")).substr(slash),
+			configTmpl,
+			values = task.options().values;
+
+		grunt.log.write("Processing template", srcFile, destFile, "... ");
+
+		try {
+
+			configTmpl = grunt.file.read(srcFile);
+
+			for (var k in values) {
+				var key = new RegExp("~" + k + "~", "g"),
+				value = values[k];
+
+				configTmpl = configTmpl.replace(key, value);
+			}
+
+			grunt.file.write(destFile, configTmpl);
+
+			grunt.log.ok();
+
+		} catch(err) {
+			grunt.log.error(err);
+		}
+
+	});
+
+}
+
+
 
 module.exports = function (grunt) {
 	var pkg = grunt.file.readJSON('package.json');
@@ -57,11 +92,18 @@ module.exports = function (grunt) {
 	grunt.file.defaultEncoding = 'utf8';
 
 	grunt.registerMultiTask('noinfopath_config', 'Used for multi-target noinfopath deployments.', function () {
+		if(this.data.src) {
+			grunt.log.writeln("Testing Version 1");
+			this.filesSrc.forEach(function (f) {
+				configure_v1(grunt, this, f);
+			}.bind(this));
+		} else {
+			grunt.log.writeln("Testing Version 2");
+			this.files.forEach(function (file) {
+				configure_v2(grunt, this, file);
+			}.bind(this));
+		}
 
-		var task = this;
-		this.filesSrc.forEach(function (f) {
-			configure(grunt, task, f);
-		});
 	});
 
 };

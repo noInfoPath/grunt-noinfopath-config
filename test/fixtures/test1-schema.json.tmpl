@@ -1,0 +1,41 @@
+[{
+	"storageType": "mgfsb",
+	"mongoDbUrl": "~NIP_MONGO_HOST~/efr2_dtc",
+	"uri": "dtc/changes",
+	"collectionName": "changes",
+	"primaryKey": "ChangeID",
+	"fileNameProperty": "ChangeID",
+	"metadata": ["ChangeID", "CreatedBy", "DateCreated", "ModifiedBy", "ModifiedDate", "namespace", "state", "timestamp", "transactionId", "userId"]
+},
+{
+	"storageType": "mongo",
+	"mongoDbUrl": "~NIP_MONGO_HOST~/efr2_dtc",
+	"uri": "dtc/changes-metadata",
+	"collectionName": "changes.files",
+	"primaryKey": "_id"
+},
+{
+	"storageType": "awss3",
+	"uri": "aws/NoInfoPath_FileUploadCache",
+	"bucketName": "file-cache.noinfopath.net",
+	"folderName": "rm-efr2-test/",
+	"fileNameProperty": "name",
+	"primaryKey": "FileID",
+	"metadata": [
+		"CreatedBy",
+		"DateCreated",
+		"FileID",
+		"ModifiedBy",
+		"ModifiedDate",
+		"name",
+		"size",
+		"type"
+	],
+	"contentType": "application/json"
+},
+{
+	"mongoDbUrl": "~NIP_MONGO_HOST~/efr2_dtc",
+	"uri": "dtc/log",
+	"collectionName": "logs",
+	"primaryKey": "_id"
+}]

@@ -28,11 +28,13 @@ exports.noinfopath_config = {
 		done();
 	},
 	custom_options: function (test) {
-		test.expect(1);
-		var actual = grunt.file.readJSON('test/fixtures/test-schema.json');
+		test.expect(2);
+		var actual1 = grunt.file.readJSON('test/build/test1-schema.json');
 		var expected = grunt.file.readJSON('test/expected/test-schema.json');
+		var actual2 = grunt.file.readJSON('test/build/test2-schema.json');
 
-		test.deepEqual(actual, expected, 'Configuration test successful');
+		test.deepEqual(actual1, expected, 'Configuration test1 successful');
+		test.deepEqual(actual2, expected, 'Configuration test2 successful');
 
 		test.done();
 	}
