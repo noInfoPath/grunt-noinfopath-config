@@ -1,5 +1,5 @@
 /*
- * grunt-noinfopath-config
+ * grunt-noinfopath-config @version 1.0.2
  *
  *
  * Copyright (c) 2017 NoInfoPath Group, LLC.

@@ -1,4 +1,4 @@
-# grunt-noinfopath-config
+# grunt-noinfopath-config @version 1.0.2
 
 > Used for multi-target noinfopath deployments.
 

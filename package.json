@@ -1,7 +1,7 @@
 {
   "name": "@noinfopath/grunt-noinfopath-config",
   "description": "Used for multi-target noinfopath deployments.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "",
   "author": {
     "name": "Jeffrey A. Gochin",
