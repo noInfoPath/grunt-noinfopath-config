@@ -2,8 +2,8 @@
  * grunt-noinfopath-config
  *
  *
- * Copyright (c) 2017 Jeffrey A. Gochin
- * Licensed under the MIT license.
+ * Copyright (c) 2017 NoInfoPath Group, LLC.
+ * Licensed under the MIT license. (MIT)
  */
 
 'use strict';
@@ -51,12 +51,14 @@ function configure_v2(grunt, task, file) {
 
 	file.src.forEach(function(srcFile){
 
-		var slash  = srcFile.lastIndexOf(process.platform.indexOf("win32") > -1 ? "\\" : "/")  + 1,
-			destFile = file.dest + srcFile.substring(0, srcFile.lastIndexOf(".tmpl")).substr(slash),
+		var win32 = process.platform.indexOf("win32") > -1,
+			srcFile2 = win32 ? srcFile.replace("/", "\\") : srcFile,
+			slash  =  srcFile2.lastIndexOf(win32 ? "\\" : "/") + 1,
+			destFile = (win32 ? file.dest.replace("/", "\\") : file.dest) + srcFile2.substring(0, srcFile2.lastIndexOf(".tmpl")).substr(slash),
 			configTmpl,
 			values = task.options().values;
 
-		grunt.log.write("Processing template", srcFile, destFile, "... ");
+		grunt.log.write("Processing template:", srcFile2, "Output:", destFile, "... ");
 
 		try {
 
@@ -93,12 +95,12 @@ module.exports = function (grunt) {
 
 	grunt.registerMultiTask('noinfopath_config', 'Used for multi-target noinfopath deployments.', function () {
 		if(this.data.src) {
-			grunt.log.writeln("Testing Version 1");
+			grunt.log.writeln("Using Version 1");
 			this.filesSrc.forEach(function (f) {
 				configure_v1(grunt, this, f);
 			}.bind(this));
 		} else {
-			grunt.log.writeln("Testing Version 2");
+			grunt.log.writeln("Using Version 2");
 			this.files.forEach(function (file) {
 				configure_v2(grunt, this, file);
 			}.bind(this));
