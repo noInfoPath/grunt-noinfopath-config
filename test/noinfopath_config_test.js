@@ -28,13 +28,24 @@ exports.noinfopath_config = {
 		done();
 	},
 	custom_options: function (test) {
-		test.expect(2);
-		var actual1 = grunt.file.readJSON('test/build/test1-schema.json');
-		var expected = grunt.file.readJSON('test/expected/test-schema.json');
-		var actual2 = grunt.file.readJSON('test/build/test2-schema.json');
+		test.expect(4);
 
-		test.deepEqual(actual1, expected, 'Configuration test1 successful');
-		test.deepEqual(actual2, expected, 'Configuration test2 successful');
+		var expected1 = grunt.file.readJSON('test/expected/test-schema.json');
+		var expected2 = grunt.file.readJSON('test/expected/no-forms.json');
+		var expected3 = grunt.file.readJSON('test/expected/routes.json');
+		var expected4 = grunt.file.readJSON('test/expected/config.json.tmpl');
+		var actual1 = grunt.file.readJSON('test/build/test1-schema.json');
+		var actual2 = grunt.file.readJSON('test/build/test2-schema.json');
+		var actual3 = grunt.file.readJSON('test/build/routes.json');
+		var actual4 = grunt.file.readJSON('test/build/config.json.tmpl');
+
+
+		test.deepEqual(actual1, expected1, 'Configuration test1 successful');
+		test.deepEqual(actual2, expected1, 'Configuration test2 successful');
+		test.deepEqual(actual3, expected3, 'Configuration test3 successful');
+		test.deepEqual(actual4, expected4, 'Configuration test4 successful');
+
+
 
 		test.done();
 	}

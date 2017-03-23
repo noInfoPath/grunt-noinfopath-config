@@ -1,7 +1,7 @@
 {
 	"name": "@noinfopath/grunt-noinfopath-config",
 	"description": "Used for multi-target noinfopath deployments.",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"homepage": "",
 	"author": {
 		"name": "Jeffrey A. Gochin",
@@ -18,8 +18,8 @@
 		{
 			"type": "MIT",
 			"url": "/blob/master/LICENSE-MIT"
-    }
-  ],
+		}
+	],
 	"engines": {
 		"node": ">= 0.8.0"
 	},

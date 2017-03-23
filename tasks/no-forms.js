@@ -1,5 +1,5 @@
 /*
- * grunt-noinfopath-config @version 1.0.3
+ * grunt-noinfopath-config @version 1.0.4
  *
  *	noForms Task
  *

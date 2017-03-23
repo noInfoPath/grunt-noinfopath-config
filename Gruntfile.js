@@ -25,7 +25,7 @@ module.exports = function (grunt) {
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: ['tmp']
+			tests: ['test/build', 'test/fixtures/test1-schema.json', 'test/fixtures/test2-schema.json', 'test/fixtures/test-schema.json']
 		},
 
 		// Configuration to be run (and then tested).
@@ -53,6 +53,29 @@ module.exports = function (grunt) {
 				}
 			},
 			dev2: {
+				src: ["test/fixtures/test-schema.json.tmpl"],
+				dest: "test/build/",
+				options: {
+					values: {
+						"NIP_MONGO_HOST": "mongodb://localhost:27017",
+						"NIP_AUTH_HOST": "auth.noinfopath.net",
+						"NIP_AUTH_PORT": 80,
+						"NIP_RESTAPI_HOST": "localhost",
+						"NIP_RESTAPI_PORT": 4000,
+						"NIP_MS_WEBAPI_HOST": "auth.noinfopath.net",
+						"NIP_MS_WEBAPI_PORT": 80,
+						"NIP_DTC_COLLECTION": "efr2_dtc",
+						"NIP_DTCS_HOST": "localhost",
+						"NIP_DTCS_PORT": 3100,
+						"NIP_BEDS_PORT": 3200,
+						"NIP_LOG_ROOT": "./logs/",
+						"JWT_SECRET": "NTE1Njg2NDFGQTg5MzY1RDhDMjQ5REREQjU1RTE3QUE",
+						"JWT_AUDIENCE": "vO6mYRIAldyw7GP6FUW0WgvU32pFYD6x",
+						"CORS_WHITELIST": "[\"http://macbook:3000\", \"http://macbook:3001\", \"http://macbook:8080\"]"
+					}
+				}
+			},
+			dev3: {
 				files: {
 					"test/build/": ["test/fixtures/*.json.tmpl", "!test/fixtures/test-schema.json.tmpl"]
 				},
@@ -77,7 +100,6 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-
 		noForms: {
 			"compile": {
 				files: [{
@@ -85,8 +107,8 @@ module.exports = function (grunt) {
 				}],
 				options: {
 					dest: {
-						forms: "build/no-forms.json",
-						routes: "build/routes.json"
+						forms: "test/build/no-forms.json",
+						routes: "test/build/routes.json"
 					}
 				}
 			}
@@ -99,7 +121,7 @@ module.exports = function (grunt) {
 				}],
 				options: {
 					temp: "test/fixtures/config.json",
-					dest: "build/config.json.tmpl"
+					dest: "test/build/config.json.tmpl"
 				}
 			}
 		},
@@ -133,7 +155,7 @@ module.exports = function (grunt) {
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'noinfopath_config', 'nodeunit']);
+	grunt.registerTask('test', ['clean', 'noinfopath_config', 'noForms', 'noConfig', 'nodeunit']);
 
 	// By default, lint and run all tests.
 	grunt.registerTask('default', ['jshint', 'test']);

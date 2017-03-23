@@ -1,5 +1,5 @@
 /*
- * grunt-noinfopath-config @version 1.0.3
+ * grunt-noinfopath-config @version 1.0.4
  *
  * NoInfoPath Config Task
  *
@@ -16,17 +16,46 @@ function _environment() {
 	return envi;
 }
 
+
+function fixupPath(path) {
+	var win32 = process.platform.indexOf("win32") > -1,
+		rx = new RegExp("/", "g");
+
+	if(win32) {
+		return {path: path.replace(rx,"\\"), win32: win32, slash: "\\"};
+	} else {
+		return {path: path, win32: win32, slash: "/"};
+	}
+}
+
+function getFileName(pathObj) {
+	var lastSlashPos  =  pathObj.path.lastIndexOf(pathObj.slash) + 1;
+
+	return pathObj.path.substring(lastSlashPos);
+}
+
+function getPathWithoutExt(path) {
+	var rx = new RegExp("\.tmpl$");
+	return path.replace(rx, "");
+}
+
+function appendFileExt(path) {
+	return path + ".tmpl";
+}
+
+
 function configure_v1(grunt, task, file) {
 
 
-	var configPath = file.substring(0, file.lastIndexOf(".tmpl")),
+	var pathObj = fixupPath(file),
+		configPath = task.data.dest ? task.data.dest +  getPathWithoutExt(getFileName(pathObj))  : getPathWithoutExt(pathObj.path),
 		configTmplPath = file,
 		configTmpl,
 		values = task.options().values;
 
 
 
-	grunt.log.write("Processing template", configTmplPath, "... ");
+	grunt.log.write("Processing template", pathObj.path, "==>", configPath, "... ");
 
 	try {
 
@@ -48,18 +77,18 @@ function configure_v1(grunt, task, file) {
 	}
 }
 
+
 function configure_v2(grunt, task, file) {
 
 	file.src.forEach(function(srcFile){
 
-		var win32 = process.platform.indexOf("win32") > -1,
-			srcFile2 = win32 ? srcFile.replace("/", "\\") : srcFile,
-			slash  =  srcFile2.lastIndexOf(win32 ? "\\" : "/") + 1,
-			destFile = (win32 ? file.dest.replace("/", "\\") : file.dest) + srcFile2.substring(0, srcFile2.lastIndexOf(".tmpl")).substr(slash),
+
+		var pathObj = fixupPath(srcFile),
+			destFile = file.dest + getPathWithoutExt(getFileName(pathObj)),
 			configTmpl,
 			values = task.options().values;
 
-		grunt.log.write("Processing template:", srcFile2, "Output:", destFile, "... ");
+		grunt.log.write("Processing template:", pathObj.path, "==>", destFile, "... ");
 
 		try {
 
