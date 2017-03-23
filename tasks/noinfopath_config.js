@@ -1,6 +1,7 @@
 /*
- * grunt-noinfopath-config @version 1.0.2
+ * grunt-noinfopath-config @version 1.0.3
  *
+ * NoInfoPath Config Task
  *
  * Copyright (c) 2017 NoInfoPath Group, LLC.
  * Licensed under the MIT license. (MIT)

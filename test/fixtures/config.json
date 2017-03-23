@@ -1,0 +1,35 @@
+{
+	"debug": true,
+	"RESTURI": "~NIP_MS_WEBAPI_PROTOCOL~~NIP_MS_WEBAPI_HOST~:~NIP_MS_WEBAPI_PORT~/odata",
+	"AUTHURI": "~NIP_AUTH_PROTOCOL~~NIP_AUTH_HOST~:~NIP_AUTH_PORT~",
+	"NOREST": "~NIP_MS_WEBAPI_PROTOCOL~~NIP_MS_WEBAPI_HOST~:~NIP_MS_WEBAPI_PORT~",
+	"NODBSCHEMAURI": "~NIP_MS_WEBAPI_PROTOCOL~~NIP_MS_WEBAPI_HOST~:~NIP_MS_WEBAPI_PORT~/api/NoDbSchema",
+	"noSync": {
+		"url": "~NIP_DTCS_PROTOCOL~~NIP_DTCS_HOST~:~NIP_DTCS_PORT~/user",
+		"noDataSource": {
+			"dataProvider": "noIndexedDb",
+			"databaseName": "rmEFR2"
+		}
+	},
+	"localStores":{
+		"nonDBStores": [
+			"noConfig",
+			"no-nav-bar",
+			"noDbSchema_FCFNv2",
+			"noDbSchema_FCFNv2_Remote",
+			"noDbSchema_NoInfoPath_dtc_v1",
+			"Dexie.Observable/latestRevision/NoInfoPath_dtc_v1",
+			"debug",
+			"fastStart"
+		],
+		"dbStores": {
+			"clearDB": true,
+			"stores":[
+				"dbPopulated_NoInfoPath_dtc_v1",
+				"dbPopulated_rmEFR2"
+			]
+		}
+	},
+	"noDbSchema": [],
+	"noExcelImport": {}	
+}

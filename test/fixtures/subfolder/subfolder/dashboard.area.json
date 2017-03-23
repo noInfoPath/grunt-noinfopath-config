@@ -1,0 +1,16 @@
+{
+    "dashboard": {
+        "noTitle": {
+            "title": "<h1>Home Page</h1>"
+        },
+        "route": {
+    		"name": "efr.home",
+    		"url": "/home",
+    		"templateUrl": "dashboard/index.html",
+            "data": {
+                "title": "Dashboard",
+				"hidePrompt": true
+            }
+    	}
+    }
+}

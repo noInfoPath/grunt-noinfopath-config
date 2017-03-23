@@ -78,6 +78,32 @@ module.exports = function (grunt) {
 			}
 		},
 
+		noForms: {
+			"compile": {
+				files: [{
+					src: ["test/fixtures/**/*.area.json"]
+				}],
+				options: {
+					dest: {
+						forms: "build/no-forms.json",
+						routes: "build/routes.json"
+					}
+				}
+			}
+		},
+
+		noConfig: {
+			compile: {
+				files: [{
+					src: ["test/fixtures/*.dbschema.json", "test/fixtures/*.excel.json"]
+				}],
+				options: {
+					temp: "test/fixtures/config.json",
+					dest: "build/config.json.tmpl"
+				}
+			}
+		},
+
 		// Unit tests.
 		nodeunit: {
 			tests: ['test/*_test.js']

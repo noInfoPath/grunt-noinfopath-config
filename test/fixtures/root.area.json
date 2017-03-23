@@ -1,0 +1,10 @@
+{
+	"root": {
+		"route": {
+			"name": "efr",
+			"url": "/efr",
+			"templateUrl": "default.html",
+			"abstract": true
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"dbName": "hsl_sop_remote",
+	"provider": "noHTTP",
+	"schemaSource": {
+		"provider": "cached",
+		"sourceDB": "rmEFR2"
+	},
+	"dataProvider": "sampleData"
+}
