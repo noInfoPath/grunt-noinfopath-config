@@ -34,8 +34,8 @@
 		"grunt-contrib-watch": "^1.0.0"
 	},
 	"keywords": [
-    "gruntplugin"
-  ],
+		"gruntplugin"
+	],
 	"dependencies": {
 		"merge": "^1.2.0"
 	}

@@ -9,6 +9,15 @@
 
 'use strict';
 
+function _fixver(verstr) {
+	var p = verstr.split("."),
+		n = Number(p[2]) + 1;
+
+	p[2] = n;
+
+	return p.join(".");
+}
+
 module.exports = function (grunt) {
 	var pkg = grunt.file.readJSON('package.json'),
 		merge = require('merge');
@@ -50,6 +59,12 @@ module.exports = function (grunt) {
 		for (var f in noForms) {
 			var form = noForms[f];
 			if (form.route) {
+				if(dest.cacheBust) {
+					var rte = form.route;
+					var templateUrl = rte.templateUrl;
+
+					form.route.templateUrl = form.route.templateUrl + "?v=" + _fixver(pkg.version);
+				}
 				routes[f] = form.route;
 			}
 

@@ -22,7 +22,6 @@ module.exports = function (grunt) {
 				jshintrc: '.jshintrc'
 			}
 		},
-
 		// Before generating any new files, remove any previously-created files.
 		clean: {
 			tests: ['test/build', 'test/fixtures/test1-schema.json', 'test/fixtures/test2-schema.json', 'test/fixtures/test-schema.json']
@@ -108,7 +107,8 @@ module.exports = function (grunt) {
 				options: {
 					dest: {
 						forms: "test/build/no-forms.json",
-						routes: "test/build/routes.json"
+						routes: "test/build/routes.json",
+						cacheBust: true
 					}
 				}
 			}

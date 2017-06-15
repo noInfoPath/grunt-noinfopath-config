@@ -1,1 +1,1 @@
-{"root":{"name":"efr","url":"/efr","templateUrl":"default.html","abstract":true},"dashboard":{"name":"efr.home","url":"/home","templateUrl":"dashboard/index.html","data":{"title":"Dashboard","hidePrompt":true}}}
+{"root":{"name":"efr","url":"/efr","templateUrl":"default.html?v=1.0.5","abstract":true},"dashboard":{"name":"efr.home","url":"/home","templateUrl":"dashboard/index.html?v=1.0.5","data":{"title":"Dashboard","hidePrompt":true}}}
